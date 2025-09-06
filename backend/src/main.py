@@ -4,14 +4,8 @@ from registration.router import router as registration_r
 
 from sqlalchemy.orm import Session
 import models as md
-from db import SessionLocal
+from db import get_db
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 app = FastAPI()
 app.include_router(registration_r)
@@ -37,4 +31,4 @@ async def chat_send(
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="localhost", port=8000)
+    uvicorn.run(app, host="localhost", port=8000, )

@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship
 
 
-from ..db import Base
+from src.db import Base
 
 class User(Base):
     __tablename__ = "users"
@@ -11,7 +11,7 @@ class User(Base):
     username = Column(String, unique=True)
     first_name = Column(String)
     last_name = Column(String)
-    email = Column(String, unique=True, min_length=8)
+    email = Column(String, unique=True)
     password = Column(String)
     is_superuser = Column(Boolean)
 
