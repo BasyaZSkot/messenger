@@ -1,6 +1,7 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Request
 import uvicorn
 from registration.router import router as registration_r
+from fastapi.templating import Jinja2Templates
 
 from sqlalchemy.orm import Session
 import models as md
@@ -9,10 +10,11 @@ from db import get_db
 
 app = FastAPI()
 app.include_router(registration_r)
+templates = Jinja2Templates(directory="src/static/")
 
 @app.get("/")
-async def chats_menu():
-    return {"chats": "chats"}
+async def chats_menu(request: Request):
+    return templates.TemplateResponse("/login.html", {"request": request})
 
 
 @app.get("/chat123412", )
